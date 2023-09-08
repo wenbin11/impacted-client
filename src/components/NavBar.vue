@@ -56,10 +56,15 @@ export default {};
   height: 80px;
   top: 0px;
   z-index: 100;
-  background-color: #f5f5f5;
+  background-color: #f6f6f6;
+}
+
+.left {
+  background-color: #f6f6f6;
 }
 
 .logo {
+  background-color: #f6f6f6;
   margin-left: 10vw;
   font-size: 1.7rem;
   font-family: "Russo One";
@@ -71,6 +76,7 @@ a:hover {
 }
 
 .nav-links {
+  background-color: #f6f6f6;
   display: flex;
   list-style: none;
   font-size: 1.25rem;
@@ -78,6 +84,7 @@ a:hover {
 }
 
 ul li a {
+  background-color: #f6f6f6;
   color: black;
   text-decoration: none;
 }
@@ -96,12 +103,14 @@ ul li a {
 
 .right li {
   margin-left: 50px;
+  background-color: #f6f6f6;
 }
 
 .blue-btn {
   border: none;
   cursor: pointer;
   font-weight: bold;
+  background-color: #f6f6f6;
 }
 
 .blue-btn a {

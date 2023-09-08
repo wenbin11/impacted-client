@@ -14,8 +14,11 @@ export default {
 
 <style>
 * {
-  background-color: #f5f5f5;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
   font-family: "Open Sans", sans-serif;
-  margin: 0px;
+  box-sizing: border-box;
+  user-select: none;
 }
 </style>

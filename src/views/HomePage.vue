@@ -60,7 +60,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.main {
+  background-color: #f0f0f0;
+}
+
 .banner-container {
   position: relative;
   width: 100%;
@@ -122,7 +126,7 @@ export default {
 }
 
 .mission-container {
-  width: 85vw;
+  width: 90vw;
   margin: 20px auto;
   text-align: center;
   display: flex;

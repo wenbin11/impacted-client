@@ -67,19 +67,26 @@
         <div class="impact-box-left">
           <div class="left-side">
             <div class="left-header">
-              <span class="header-text">292 learning resources</span>
+              <span class="header-text" v-if="aboutData.learningResources"
+                >{{ parseInt(aboutData.learningResources.count) }} learning
+                resources</span
+              >
             </div>
             <div class="left-paragraph">
               <span class="paragraph-text">distributed</span>
             </div>
             <div class="left-header">
-              <span class="header-text">34 supporters</span>
+              <span class="header-text" v-if="aboutData.supporters"
+                >{{ aboutData.supporters.count }} supporters</span
+              >
             </div>
             <div class="left-paragraph">
               <span class="paragraph-text">promoting learning</span>
             </div>
             <div class="left-header">
-              <span class="header-text">2 goals</span>
+              <span class="header-text" v-if="aboutData.goals"
+                >{{ aboutData.goals.count }} goals</span
+              >
             </div>
             <div class="left-paragraph">
               <span class="paragraph-text">achieved</span>
@@ -87,22 +94,38 @@
           </div>
           <div class="right-side">
             <div class="right-header">
-              <span class="green-header-text">+20</span>
+              <span class="green-header-text" v-if="aboutData.learningResources"
+                >+ {{ aboutData.learningResources.incremented }}</span
+              >
             </div>
             <div class="right-paragraph">
-              <span class="green-paragraph-text">in the last 7 days</span>
+              <span
+                class="green-paragraph-text"
+                v-if="aboutData.learningResources"
+                >{{
+                  getTextContent(aboutData.learningResources.daysDifference)
+                }}</span
+              >
             </div>
             <div class="right-header">
-              <span class="green-header-text">+2</span>
+              <span class="green-header-text" v-if="aboutData.supporters"
+                >+ {{ aboutData.supporters.incremented }}</span
+              >
             </div>
             <div class="right-paragraph">
-              <span class="green-paragraph-text">in the last 30 days</span>
+              <span class="green-paragraph-text" v-if="aboutData.supporters">{{
+                getTextContent(aboutData.supporters.daysDifference)
+              }}</span>
             </div>
             <div class="right-header">
-              <span class="green-header-text">+1</span>
+              <span class="green-header-text" v-if="aboutData.goals"
+                >+ {{ aboutData.goals.incremented }}</span
+              >
             </div>
             <div class="right-paragraph">
-              <span class="green-paragraph-text">in the last 90 days</span>
+              <span class="green-paragraph-text" v-if="aboutData.goals">{{
+                getTextContent(aboutData.goals.daysDifference)
+              }}</span>
             </div>
           </div>
         </div>
@@ -131,44 +154,32 @@
 <script>
 import * as echarts from "echarts";
 import axios from "axios";
-// import ApiEndPoints from "../services/apiEndPoints";
 
 export default {
   data() {
     return {
       aboutData: [],
-      pieChartData: {
-        legend: [
-          "Educational Programs",
-          "Building Teaching Centres",
-          "Scholarships Awarded",
-          "School Supplies",
-        ],
-        seriesData: [102, 102, 300, 410],
-      },
     };
   },
-  mounted() {
-    // Fetch data from API endpoint
-    // ApiEndPoints.getAboutData()
-    //   .then((response) => {
-    //     this.aboutData = response.data;
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-
+  created() {
     axios
       .get("http://localhost:8080/about")
       .then((response) => {
-        console.log(response.data);
+        this.aboutData = response.data;
+        this.renderChart();
       })
       .catch((err) => {
         console.log(err);
       });
   },
   methods: {
+    getTextContent(numberOfDays) {
+      if (numberOfDays === 1) {
+        return "in the last day";
+      } else {
+        return `in the last ${numberOfDays} days`;
+      }
+    },
     renderChart() {
       const chart = echarts.init(this.$refs.chartRef);
       const option = {
@@ -187,15 +198,15 @@ export default {
           textStyle: {
             fontSize: 16,
           },
-          data: this.pieChartData.legend,
+          data: this.aboutData.pieChartData.legend,
         },
         series: [
           {
             type: "pie",
             radius: "70%",
             center: ["50%", "60%"],
-            data: this.pieChartData.seriesData.map((value, index) => ({
-              name: this.pieChartData.legend[index],
+            data: this.aboutData.pieChartData.data.map((value, index) => ({
+              name: this.aboutData.pieChartData.legend[index],
               value,
             })),
             label: {
@@ -221,7 +232,7 @@ export default {
 
 <style scoped>
 .container {
-  width: 85vw;
+  width: 90vw;
   margin: 70px auto;
   text-align: center;
   display: flex;
@@ -253,13 +264,13 @@ h1 {
 
 .purpose {
   margin-top: 5vh;
-  width: 85vw;
-  border-radius: 30px;
+  width: 90vw;
+  border-radius: 20px;
   object-fit: cover;
 }
 
 .values-box-container {
-  width: 85vw;
+  width: 90vw;
   margin-top: 30px;
   display: flex;
   gap: 75px;
@@ -268,7 +279,7 @@ h1 {
 .values-box {
   width: calc(33.3%);
   border: 1px solid gray;
-  border-radius: 30px;
+  border-radius: 20px;
 }
 
 .value-title {
@@ -290,7 +301,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
-  border-radius: 30px;
+  border-radius: 20px;
 }
 
 .impact-box-left,
@@ -321,13 +332,13 @@ ul li {
 
 .header-text,
 .green-header-text {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
 .green-paragraph-text,
 .paragraph-text {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .paragraph-text {
@@ -360,7 +371,7 @@ ul li {
 .header-text,
 .left-paragraph,
 .right-paragraph {
-  background-color: white;
+  background-color: #f6f6f6;
 }
 
 .impact-box-right,
@@ -390,11 +401,11 @@ ul li {
 }
 
 .fundings-chart-container {
-  width: 100%;
-  height: 300px;
+  width: 95%;
+  height: 500px;
   margin-top: 30px;
-  border-radius: 30px;
+  border-radius: 20px;
   border: 1px solid gray;
-  padding: 20px;
+  padding: 25px;
 }
 </style>
