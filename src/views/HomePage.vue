@@ -1,34 +1,37 @@
 <template>
-  <div class="main">
-    <!-- Banner Container -->
-    <div class="banner-container">
-      <!-- Image to fill banner container -->
-      <img src="../assets/landing/banner.jpg" class="banner" />
-      <!-- Text overlay on banner image -->
-      <div class="overlay">
+  <!-- Home Page Container -->
+  <div class="home-page">
+    <!-- Banner Section -->
+    <div class="banner-section">
+      <!-- Banner Image -->
+      <img src="../assets/landing/banner.jpg" class="banner-image" />
+      <!-- Banner Overlay -->
+      <div class="banner-overlay">
+        <!-- Overlay Content -->
         <div class="overlay-content">
           <!-- Banner Header -->
-          <h1 class="banner-header">Transforming Lives Through Learning!</h1>
+          <h1 class="banner-title">Transforming Lives Through Learning!</h1>
           <!-- Banner Body Text -->
-          <p class="banner-body-text">
+          <p class="banner-text">
             Join us in making a difference today by donating to ImpactEd and
             empowering children worldwide with the gift of education.
           </p>
-          <!-- Button -->
+          <!-- Donate Button -->
           <blue-button buttonText="Donate Now" routeName="Donation" />
         </div>
       </div>
     </div>
 
-    <!-- Mission Container -->
-    <div class="mission-container">
-      <!-- Mission Header -->
+    <!-- Mission Section -->
+    <div class="mission-section">
+      <!-- Mission Header Container -->
       <div class="mission-header-container">
+        <!-- Mission Header -->
         <h1>Our</h1>
-        <h1 class="mission-text">Mission</h1>
+        <h1 class="mission-heading">Mission</h1>
       </div>
-      <!-- Mission Body-Text -->
-      <p class="mission-body-text">
+      <!-- Mission Body Text -->
+      <p class="mission-description">
         At ImpactEd, our mission is to bridge the education gap and create a
         better future for all. We believe that education is a fundamental right
         that empowers individuals and transforms communities. We are committed
@@ -40,7 +43,7 @@
         brighter tomorrow. Together, let's shape a world where education knows
         no boundaries and every learner has the opportunity to thrive.
       </p>
-      <!-- Button -->
+      <!-- Learn More Button -->
       <blue-button buttonText="Learn More" routeName="About" />
     </div>
   </div>
@@ -50,10 +53,12 @@
 import BlueButton from "../components/BlueButton.vue";
 
 /**
- * HomePage View Component
+ * LandingPage Component
  *
- * Component containing a banner and
- * the mission
+ * The LandingPage component represents the landing page of the ImpactEd website.
+ *
+ * It features a banner with an overlay text and a call to action button, as well as a section
+ * describing ImpactEd's mission with another call to action button.
  */
 export default {
   components: { BlueButton },
@@ -61,18 +66,19 @@ export default {
 </script>
 
 <style scoped>
-.main {
+.home-page {
   background-color: #f0f0f0;
 }
 
-.banner-container {
+/* Banner Section Styles */
+.banner-section {
   position: relative;
   width: 100%;
   max-width: 100vw;
   display: inline-block;
 }
 
-.banner {
+.banner-image {
   display: block;
   width: 100%;
   height: 350px;
@@ -80,7 +86,7 @@ export default {
 }
 
 /* Linear gradient overlay */
-.banner-container::before {
+.banner-section::before {
   content: "";
   position: absolute;
   top: 0;
@@ -96,14 +102,15 @@ export default {
   pointer-events: none;
 }
 
-.overlay,
+.banner-overlay,
 .overlay-content,
-.banner-header,
-.banner-body-text {
+.banner-title,
+.banner-text,
+.banner-container a {
   background-color: black;
 }
 
-.overlay {
+.banner-overlay {
   position: absolute;
   top: 0;
   left: 50px;
@@ -120,12 +127,13 @@ export default {
   padding: 20px;
 }
 
-.banner-header {
+.banner-title {
   font-family: "Russo-One";
   margin-bottom: 20px;
 }
 
-.mission-container {
+/* Mission Section Styles */
+.mission-section {
   width: 90vw;
   margin: 20px auto;
   text-align: center;
@@ -140,13 +148,13 @@ export default {
   justify-content: center;
 }
 
-.mission-text {
+.mission-heading {
   margin-left: 10px;
   color: #00a2e6;
   font-weight: bold;
 }
 
-.mission-body-text {
+.mission-description {
   margin-top: 10px;
   font-size: 1.25rem;
   line-height: 2rem;

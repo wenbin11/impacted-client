@@ -20,11 +20,11 @@
       <!-- Navlinks depending on User Types -->
       <ul class="nav-links">
         <li class="sign-up">
-          <router-link to="#">Sign Up</router-link>
+          <router-link to="/register">Sign Up</router-link>
         </li>
         <li>
           <button class="blue-btn">
-            <router-link to="#">Login</router-link>
+            <router-link to="/login">Login</router-link>
           </button>
         </li>
         <!-- <li v-if="userLoggedIn">
@@ -38,10 +38,11 @@
 
 <script>
 /**
- * NavBar Component
+ * Navbar Component
  *
- * Component containing the project logo and nav-links to all the
- * common pages used
+ * The Navbar component represents the navigation bar at the top of the ImpactEd website.
+ *
+ * It includes a logo, navigation links, and user-related options such as sign-up and login.
  */
 export default {};
 </script>

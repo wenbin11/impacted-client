@@ -1,4 +1,5 @@
 <template>
+  <!-- About Page Container -->
   <div class="about-page">
     <!-- Purpose Container -->
     <div class="container">
@@ -7,7 +8,7 @@
         <h1>Our</h1>
         <h1 class="header-main">Purpose</h1>
       </div>
-      <!-- Purpose Body-Text -->
+      <!-- Purpose Body Text -->
       <p class="purpose-body-text">
         Our vision at ImpactEd is a world where every child has equal access to
         quality education, empowering them to reach their full potential and
@@ -15,6 +16,7 @@
         education knows no boundaries and serves as a catalyst for social and
         economic progress, fostering a more equitable and sustainable world.
       </p>
+      <!-- Purpose Image -->
       <img src="../assets/about/purpose.jpg" class="purpose" />
     </div>
 
@@ -25,18 +27,18 @@
         <h1>Our</h1>
         <h1 class="header-main">Core Values</h1>
       </div>
-      <!-- values-box Containers -->
+      <!-- Values Box Containers -->
       <div class="values-box-container">
-        <!-- values-box 1 -->
+        <!-- Value Box 1 -->
         <div class="values-box">
           <h2 class="value-title">Innovation</h2>
           <div class="value-body-text">
             We embrace innovative approaches to education, leveraging
             technology, research, and best practices to drive meaningful and
-            sustainable change in teaching and learning methods
+            sustainable change in teaching and learning methods.
           </div>
         </div>
-        <!-- values-box 2 -->
+        <!-- Value Box 2 -->
         <div class="values-box">
           <h2 class="value-title">Transparency</h2>
           <div class="value-body-text">
@@ -44,7 +46,7 @@
             our initiatives, impact, and financial management.
           </div>
         </div>
-        <!-- values-box 3 -->
+        <!-- Value Box 3 -->
         <div class="values-box">
           <h2 class="value-title">Advocacy</h2>
           <div class="value-body-text">
@@ -63,30 +65,32 @@
         <h1>Our</h1>
         <h1 class="header-main">Impact</h1>
       </div>
+      <!-- Impact Container -->
       <div class="impact-container">
+        <!-- Impact Box Left -->
         <div class="impact-box-left">
           <div class="left-side">
             <div class="left-header">
-              <span class="header-text" v-if="aboutData.learningResources"
-                >{{ parseInt(aboutData.learningResources.count) }} learning
-                resources</span
-              >
+              <span class="header-text" v-if="aboutData.learningResources">
+                {{ parseInt(aboutData.learningResources.count) }} learning
+                resources
+              </span>
             </div>
             <div class="left-paragraph">
               <span class="paragraph-text">distributed</span>
             </div>
             <div class="left-header">
-              <span class="header-text" v-if="aboutData.supporters"
-                >{{ aboutData.supporters.count }} supporters</span
-              >
+              <span class="header-text" v-if="aboutData.supporters">
+                {{ aboutData.supporters.count }} supporters
+              </span>
             </div>
             <div class="left-paragraph">
               <span class="paragraph-text">promoting learning</span>
             </div>
             <div class="left-header">
-              <span class="header-text" v-if="aboutData.goals"
-                >{{ aboutData.goals.count }} goals</span
-              >
+              <span class="header-text" v-if="aboutData.goals">
+                {{ aboutData.goals.count }} goals
+              </span>
             </div>
             <div class="left-paragraph">
               <span class="paragraph-text">achieved</span>
@@ -94,41 +98,44 @@
           </div>
           <div class="right-side">
             <div class="right-header">
-              <span class="green-header-text" v-if="aboutData.learningResources"
-                >+ {{ aboutData.learningResources.incremented }}</span
+              <span
+                class="green-header-text"
+                v-if="aboutData.learningResources"
               >
+                + {{ aboutData.learningResources.incremented }}
+              </span>
             </div>
             <div class="right-paragraph">
               <span
                 class="green-paragraph-text"
                 v-if="aboutData.learningResources"
-                >{{
-                  getTextContent(aboutData.learningResources.daysDifference)
-                }}</span
               >
+                {{ getTextContent(aboutData.learningResources.daysDifference) }}
+              </span>
             </div>
             <div class="right-header">
-              <span class="green-header-text" v-if="aboutData.supporters"
-                >+ {{ aboutData.supporters.incremented }}</span
-              >
+              <span class="green-header-text" v-if="aboutData.supporters">
+                + {{ aboutData.supporters.incremented }}
+              </span>
             </div>
             <div class="right-paragraph">
-              <span class="green-paragraph-text" v-if="aboutData.supporters">{{
-                getTextContent(aboutData.supporters.daysDifference)
-              }}</span>
+              <span class="green-paragraph-text" v-if="aboutData.supporters">
+                {{ getTextContent(aboutData.supporters.daysDifference) }}
+              </span>
             </div>
             <div class="right-header">
-              <span class="green-header-text" v-if="aboutData.goals"
-                >+ {{ aboutData.goals.incremented }}</span
-              >
+              <span class="green-header-text" v-if="aboutData.goals">
+                + {{ aboutData.goals.incremented }}
+              </span>
             </div>
             <div class="right-paragraph">
-              <span class="green-paragraph-text" v-if="aboutData.goals">{{
-                getTextContent(aboutData.goals.daysDifference)
-              }}</span>
+              <span class="green-paragraph-text" v-if="aboutData.goals">
+                {{ getTextContent(aboutData.goals.daysDifference) }}
+              </span>
             </div>
           </div>
         </div>
+        <!-- Impact Box Right -->
         <div class="impact-box-right">
           <div class="impact-box-header">Impact to Date</div>
           <div class="impact-box-body">
@@ -140,12 +147,14 @@
       </div>
     </div>
 
+    <!-- Funding Commitment Container -->
     <div class="container">
-      <!-- Fundings Header -->
+      <!-- Funding Commitment Header -->
       <div class="header-container">
         <h1>Our</h1>
         <h1 class="header-main">Funding Commitment</h1>
       </div>
+      <!-- Fundings Chart Container -->
       <div class="fundings-chart-container" ref="chartRef"></div>
     </div>
   </div>
@@ -155,24 +164,37 @@
 import * as echarts from "echarts";
 import axios from "axios";
 
+/**
+ * AboutPage Component
+ *
+ * The AboutPage component represents a page that provides information about ImpactEd's purpose,
+ * core values, impact to date, and funding commitment.
+ *
+ * It consists of sections such as Purpose, Core Values, Impact, and Funding Commitment, each with
+ * relevant content and visual elements.
+ */
 export default {
   data() {
     return {
-      aboutData: [],
+      aboutData: [], // Initialize aboutData as an empty array to store fetched data.
     };
   },
   created() {
+    // Send a GET request to fetch data from the backend.
     axios
       .get("http://localhost:8080/about")
       .then((response) => {
         this.aboutData = response.data;
+        // Call the renderChart method to render a chart with the fetched data.
         this.renderChart();
       })
       .catch((err) => {
+        // Handle any errors that may occur during the API request.
         console.log(err);
       });
   },
   methods: {
+    // A helper function to format text based on the number of days.
     getTextContent(numberOfDays) {
       if (numberOfDays === 1) {
         return "in the last day";
@@ -180,9 +202,12 @@ export default {
         return `in the last ${numberOfDays} days`;
       }
     },
+    // A method to render a chart using ECharts library.
     renderChart() {
+      // Initialize an ECharts chart using a DOM element with the ref "chartRef."
       const chart = echarts.init(this.$refs.chartRef);
       const option = {
+        // Configuration options for the chart.
         title: {
           left: 20,
           top: 10,
@@ -206,14 +231,17 @@ export default {
             radius: "70%",
             center: ["50%", "60%"],
             data: this.aboutData.pieChartData.data.map((value, index) => ({
+              // Configure pie chart series data.
               name: this.aboutData.pieChartData.legend[index],
               value,
             })),
             label: {
               show: true,
               fontSize: 20,
+              // Configure label format
               formatter: "${c}\n{d}%",
             },
+            // Apply emphasis to labels.
             emphasis: {
               label: {
                 show: true,
@@ -224,6 +252,7 @@ export default {
           },
         ],
       };
+      // Set the chart's configuration options and render it.
       chart.setOption(option);
     },
   },
@@ -231,6 +260,7 @@ export default {
 </script>
 
 <style scoped>
+/* Scoped CSS Styles for the AboutPage Component */
 .container {
   width: 90vw;
   margin: 70px auto;

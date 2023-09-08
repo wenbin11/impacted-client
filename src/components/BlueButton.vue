@@ -5,15 +5,15 @@
 </template>
 
 <script>
+/**
+ * BlueButton Component
+ *
+ * The BlueButton component is a reusable button component with a blue background.
+ */
 export default {
   props: {
     routeName: String,
     buttonText: String,
-  },
-  methods: {
-    navigateToRoute() {
-      this.$router.push({ name: this.routeName });
-    },
   },
 };
 </script>
@@ -28,6 +28,7 @@ button {
   cursor: pointer;
   margin-top: 20px;
   font-weight: bold;
+  font-family: "Russo One";
 }
 
 button:hover {

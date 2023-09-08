@@ -1,10 +1,15 @@
 <template>
+  <!-- Single Donation Box Container -->
   <div class="single-donation-box-container">
+    <!-- Cause Name -->
     <div class="cause-name">
       <h3>{{ boxData.causename }}</h3>
     </div>
+    <!-- Main Image -->
     <img :src="img_path" class="main-img" />
+    <!-- Target and Supporters Information -->
     <div class="target-and-supporters">
+      <!-- Target -->
       <div class="target">
         <img src="../assets/donations/target.png" alt="target" />
         <p class="target-count">
@@ -13,6 +18,7 @@
           }}
         </p>
       </div>
+      <!-- Supporters -->
       <div class="supporter">
         <img src="../assets/donations/supporters.png" alt="supporters" />
         <p class="supporter-count">
@@ -20,10 +26,13 @@
         </p>
       </div>
     </div>
+    <!-- Progress Bar -->
     <div class="progress-bar">
       <div class="progress" :style="{ width: getProgressWidth(boxData) }"></div>
     </div>
+    <!-- Current and Percentage Information -->
     <div class="current-and-percentage">
+      <!-- Current -->
       <div class="current">
         <p class="current-count">
           {{
@@ -34,6 +43,7 @@
           }}
         </p>
       </div>
+      <!-- Percentage -->
       <div class="percentage">
         <p class="percentage-count">
           {{
@@ -42,27 +52,34 @@
         </p>
       </div>
     </div>
+    <!-- Donate Button -->
     <button class="donate-btn">Donate Now</button>
   </div>
 </template>
 
 <script>
+/**
+ * DonationContainer.vue
+ *
+ * This Vue.js component represents a single donation box container that displays information about a specific cause
+ * and allows users to make donations. It provides details such as the cause name, an image, target supplies, supporters,
+ * donation progress, and a donate button.
+ */
 export default {
   props: {
     boxData: Object,
   },
   data() {
     return {
-      img_path: "images/donations/",
-      publicPath: process.env.BASE_URL,
+      img_path: "",
     };
   },
   mounted() {
-    console.log(this.boxData.image_path);
+    // Set the image path dynamically
     this.img_path = "images/donations/" + this.boxData.image_path;
-    console.log(this.boxData);
   },
   methods: {
+    // Helper function to format target number text
     getTargetNumberTextContent(targetNumber, typeName) {
       targetNumber = parseInt(targetNumber);
       if (typeName === "Infrastructure Development") {
@@ -75,6 +92,7 @@ export default {
         return `${targetNumber} programs`;
       }
     },
+    // Helper function to format supporter number text
     getSupporterTextContent(supporterNumber) {
       supporterNumber = parseInt(supporterNumber);
       if (supporterNumber === 1) {
@@ -82,6 +100,7 @@ export default {
       }
       return `${supporterNumber} supporters`;
     },
+    // Helper function to calculate progress width
     getProgressWidth(boxData) {
       const progress = parseInt(
         (boxData.currentsupplies / boxData.targetsupplies) * 100
@@ -93,14 +112,16 @@ export default {
 </script>
 
 <style scoped>
+/* Scoped CSS Styles for the DonationContainer Component */
 .single-donation-box-container {
-  width: 300px;
+  width: 325px;
   height: 400px;
   background-color: #f6f6f6;
   border-radius: 20px;
   padding: 10px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .cause-name {
@@ -117,7 +138,7 @@ export default {
 .main-img {
   margin-top: 10px;
   border-radius: 20px;
-  width: 280px;
+  width: 305px;
   height: 150px;
   object-fit: cover;
 }
@@ -125,7 +146,7 @@ export default {
 .target-and-supporters {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 15px;
   background-color: #f6f6f6;
 }
 
@@ -189,7 +210,7 @@ img {
 }
 
 .progress-bar {
-  width: 270px;
+  width: 295px;
   height: 5px;
   margin-left: 5px;
   background-color: #d1d1d1;
@@ -207,7 +228,7 @@ img {
   background-color: #00a2e6;
   border: none;
   font-family: "Russo One";
-  width: 275px;
+  width: 300px;
   height: 50px;
   border-radius: 20px;
   margin-bottom: 10px;
