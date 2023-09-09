@@ -1,7 +1,16 @@
 <template>
   <div class="sign-up-page">
     <div class="header">Create An Account</div>
-    <form class="sign-up-form">
+    <!-- Registration Error Message -->
+    <div v-if="registrationError" class="error-message">
+      Registration Unsuccessful!
+      <ul>
+        <li v-for="(error, index) in message.errors" :key="index">
+          {{ error.msg }}
+        </li>
+      </ul>
+    </div>
+    <form class="sign-up-form" @submit.prevent="signUp">
       <!-- First Name and Last Name -->
       <div class="form-row">
         <div class="form-group">
@@ -27,9 +36,15 @@
           <input type="password" id="password" v-model="password" required />
         </div>
       </div>
+      <!-- Registration Success Modal -->
+      <message-modal
+        :visible="registrationSuccess"
+        message="Registration Successful!"
+        @confirm="redirectToLogin"
+      ></message-modal>
       <!-- Sign Up Button -->
       <div class="form-row">
-        <button class="sign-up-btn" @click="signUp">Sign Up</button>
+        <button class="sign-up-btn" type="submit">Sign Up</button>
       </div>
     </form>
     <div class="login-link">
@@ -40,14 +55,19 @@
 
 <script>
 import axios from "axios";
+import MessageModal from "../components/MessageModal.vue";
 
 export default {
+  components: { MessageModal },
   data() {
     return {
       firstName: "",
       lastName: "",
       email: "",
       password: "",
+      registrationSuccess: false,
+      registrationError: false,
+      message: "",
     };
   },
   methods: {
@@ -63,19 +83,20 @@ export default {
 
       // Make a POST request to your backend registration endpoint
       axios
-        .post("/register", userData) // Update the URL as needed
+        .post("http://localhost:8080/register", userData)
         .then((response) => {
-          // Handle the successful registration response here
-          console.log("Registration successful", response.data);
-
-          // Optionally, you can redirect the user to the login page
-          this.$router.push("/login");
+          console.log(response.data);
+          this.registrationSuccess = true;
         })
         .catch((error) => {
-          // Handle registration errors here
-          console.error("Registration error", error.response.data);
-          // You can display error messages to the user if needed
+          console.log("Registration error", error.response.data);
+          this.message = error.response.data;
+          this.registrationError = true;
         });
+    },
+    redirectToLogin() {
+      this.registrationSuccess = false;
+      this.$router.push("/login");
     },
   },
 };
@@ -94,6 +115,11 @@ export default {
 .header {
   font-size: 40px;
   font-weight: bold;
+}
+
+.error-message {
+  color: #ee0000;
+  font-size: 1rem;
 }
 
 .sign-up-form {
@@ -143,10 +169,5 @@ input {
 
 .login-link {
   font-size: 16px;
-}
-
-/* Style the router link */
-.login-link a {
-  color: #00a2e6;
 }
 </style>

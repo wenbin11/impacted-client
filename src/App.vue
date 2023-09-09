@@ -32,4 +32,9 @@ export default {
   box-sizing: border-box;
   user-select: none;
 }
+
+body,
+html {
+  background-color: #f0f0f0;
+}
 </style>

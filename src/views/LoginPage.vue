@@ -1,7 +1,16 @@
 <template>
   <div class="login-page">
-    <div class="header">Welcome Back</div>
-    <form class="login-form">
+    <div class="header">Login to Your Account</div>
+    <!-- Login Error Message -->
+    <div v-if="loginError" class="error-message">
+      Login Unsuccessful!
+      <ul>
+        <li v-for="(error, index) in message.errors" :key="index">
+          {{ error.msg }}
+        </li>
+      </ul>
+    </div>
+    <form class="login-form" @submit.prevent="login">
       <!-- Email -->
       <div class="form-row">
         <div class="form-group">
@@ -18,33 +27,55 @@
       </div>
       <!-- Forgot Password Link -->
       <div class="form-row">
-        <router-link to="/resetpassword" class="forgot-password-link">
-          Forgot Password?
-        </router-link>
+        <a href="/forgot-password">Forgot Password?</a>
       </div>
       <!-- Login Button -->
       <div class="form-row">
-        <button class="login-btn" @click="login">Login</button>
+        <button class="login-btn" type="submit">Login</button>
       </div>
     </form>
-    <div class="sign-up-link">
-      Don't have an account? <router-link to="/register">Sign Up</router-link>
+    <div class="signup-link">
+      Don't have an account? <router-link to="/signup">Sign Up</router-link>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
       email: "",
       password: "",
+      loginError: false,
+      message: "",
     };
   },
   methods: {
     login() {
-      // Handle the login logic here
-      console.log("Login clicked");
+      // Create an object to send as the request payload
+      const userData = {
+        email: this.email,
+        password: this.password,
+      };
+
+      // Make a POST request to your backend login endpoint
+      axios
+        .post("http://localhost:8080/login", userData)
+        .then((response) => {
+          console.log(response.data);
+          // Store the token in local storage
+          localStorage.setItem("token", response.data.token);
+
+          // Redirect to a home page
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          console.log("Login error", error.response.data);
+          this.message = error.response.data;
+          this.loginError = true;
+        });
     },
   },
 };
@@ -63,6 +94,11 @@ export default {
 .header {
   font-size: 40px;
   font-weight: bold;
+}
+
+.error-message {
+  color: #cc0000;
+  font-size: 1rem;
 }
 
 .login-form {
@@ -93,12 +129,6 @@ input {
   font-size: 16px;
 }
 
-.forgot-password-link {
-  color: #00a2e6;
-  text-decoration: none;
-  font-weight: bold;
-}
-
 .login-btn {
   background-color: #00a2e6;
   font-weight: bold;
@@ -116,12 +146,7 @@ input {
   background-color: #0056b3;
 }
 
-.sign-up-link {
+.signup-link {
   font-size: 16px;
-}
-
-/* Style the router link */
-.sign-up-link a {
-  color: #00a2e6;
 }
 </style>

@@ -19,24 +19,30 @@
     <div class="right">
       <!-- Navlinks depending on User Types -->
       <ul class="nav-links">
-        <li class="sign-up">
+        <li class="sign-up" v-if="!isLoggedIn">
           <router-link to="/register">Sign Up</router-link>
         </li>
-        <li>
+        <li v-if="!isLoggedIn">
           <button class="blue-btn">
             <router-link to="/login">Login</router-link>
           </button>
         </li>
-        <!-- <li v-if="userLoggedIn">
+        <li v-if="isLoggedIn">
           <router-link to="/profile">My Profile</router-link>
         </li>
-        <li v-if="userLoggedIn"><a href="#" @click="logout">Logout</a></li> -->
+        <li v-if="isLoggedIn">
+          <button class="blue-btn" @click="logout">
+            <router-link to="/logout">Logout</router-link>
+          </button>
+        </li>
       </ul>
     </div>
   </nav>
 </template>
 
 <script>
+import { isLoggedIn, logoutUser } from "../utils/auth";
+
 /**
  * Navbar Component
  *
@@ -44,7 +50,22 @@
  *
  * It includes a logo, navigation links, and user-related options such as sign-up and login.
  */
-export default {};
+export default {
+  data() {
+    return {
+      isLogin: false,
+    };
+  },
+  methods: {
+    // Check if user is logged in
+    isLoggedIn,
+    logout() {
+      logoutUser;
+      this.isLogin = false;
+      this.$router.push("/");
+    },
+  },
+};
 </script>
 
 <style scoped>

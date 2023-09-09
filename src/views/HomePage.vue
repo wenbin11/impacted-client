@@ -106,7 +106,7 @@ export default {
 .overlay-content,
 .banner-title,
 .banner-text,
-.banner-container a {
+.banner-section a {
   background-color: black;
 }
 
