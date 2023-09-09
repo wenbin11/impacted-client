@@ -42,7 +42,6 @@
 
 <script>
 import axios from "axios";
-
 export default {
   data() {
     return {
@@ -67,6 +66,7 @@ export default {
           console.log(response.data);
           // Store the token in local storage
           localStorage.setItem("token", response.data.token);
+          this.$store.commit("userIsLoggedIn");
 
           // Redirect to a home page
           this.$router.push("/");

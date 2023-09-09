@@ -19,18 +19,18 @@
     <div class="right">
       <!-- Navlinks depending on User Types -->
       <ul class="nav-links">
-        <li class="sign-up" v-if="!isLoggedIn">
+        <li class="sign-up" v-if="!$store.state.isLogin">
           <router-link to="/register">Sign Up</router-link>
         </li>
-        <li v-if="!isLoggedIn">
+        <li v-if="!$store.state.isLogin">
           <button class="blue-btn">
             <router-link to="/login">Login</router-link>
           </button>
         </li>
-        <li v-if="isLoggedIn">
+        <li v-if="$store.state.isLogin">
           <router-link to="/profile">My Profile</router-link>
         </li>
-        <li v-if="isLoggedIn">
+        <li v-if="$store.state.isLogin">
           <button class="blue-btn" @click="logout">
             <router-link to="/logout">Logout</router-link>
           </button>
@@ -41,8 +41,6 @@
 </template>
 
 <script>
-import { isLoggedIn, logoutUser } from "../utils/auth";
-
 /**
  * Navbar Component
  *
@@ -51,18 +49,15 @@ import { isLoggedIn, logoutUser } from "../utils/auth";
  * It includes a logo, navigation links, and user-related options such as sign-up and login.
  */
 export default {
-  data() {
-    return {
-      isLogin: false,
-    };
-  },
   methods: {
     // Check if user is logged in
-    isLoggedIn,
     logout() {
-      logoutUser;
-      this.isLogin = false;
+      this.$store.commit("userIsLoggedOut");
       this.$router.push("/");
+    },
+    logoutUser() {
+      // Clear user authentication data from localStorage or sessionStorage
+      localStorage.removeItem("token");
     },
   },
 };
