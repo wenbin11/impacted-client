@@ -277,7 +277,7 @@ export default {
 }
 
 h1 {
-  font-size: 48px;
+  font-size: 2.5rem;
 }
 
 .header-main {

@@ -63,11 +63,12 @@ export default {
       axios
         .post("http://localhost:8080/login", userData)
         .then((response) => {
-          console.log(response.data);
-          // Store the token in local storage
-          localStorage.setItem("token", response.data.token);
-          this.$store.commit("userIsLoggedIn");
-
+          const [token, { userId }] = response.data; // Access response.data
+          // Store the token and user information in local storage and vuex store
+          localStorage.setItem("token", token);
+          localStorage.setItem("user", JSON.stringify(userId));
+          this.$store.commit("userIsLoggedIn", userId);
+    
           // Redirect to a home page
           this.$router.push("/");
         })

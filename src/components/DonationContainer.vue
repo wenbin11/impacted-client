@@ -53,7 +53,9 @@
       </div>
     </div>
     <!-- Donate Button -->
-    <button class="donate-btn">Donate Now</button>
+    <router-link :to="'/cause/' + boxData.causeid">
+      <button class="donate-btn">Donate Now</button>
+    </router-link>
   </div>
 </template>
 
@@ -76,7 +78,7 @@ export default {
   },
   mounted() {
     // Set the image path dynamically
-    this.img_path = "images/donations/" + this.boxData.image_path;
+    this.img_path = "/images/donations/" + this.boxData.image_path;
   },
   methods: {
     // Helper function to format target number text
