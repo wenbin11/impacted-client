@@ -7,6 +7,7 @@ import LoginPage from "@/views/LoginPage.vue";
 import PaymentPage from "@/views/PaymentPage.vue";
 import SuccessPage from "@/views/SuccessPage.vue";
 import ErrorPage from "@/views/ErrorPage.vue";
+import UserProfilePage from "@/views/UserProfilePage.vue";
 
 // My Routes
 const routes = [
@@ -42,18 +43,23 @@ const routes = [
   },
   {
     path: "/cause/:causeId/checkout",
-    name: "checkout",
+    name: "Checkout",
     component: PaymentPage,
   },
   {
     path: "/success",
-    name: "checkout",
+    name: "Checkout",
     component: SuccessPage,
   },
   {
     path: "/cancel",
-    name: "cancel",
+    name: "Cancel",
     component: ErrorPage,
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: UserProfilePage,
   },
 ];
 
