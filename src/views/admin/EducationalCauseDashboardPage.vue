@@ -1,50 +1,46 @@
 <template>
-  <div class="user-table">
+  <div class="education-cause-table">
     <div class="table-container">
       <div class="table-header-row">
-        <div class="table-header">User Information</div>
-        <router-link :to="`/register`">
-          <button class="add-btn">Add User</button></router-link
+        <div class="table-header">Educational Cause Information</div>
+        <router-link :to="`/add-cause`">
+          <button class="add-btn">Add Cause</button></router-link
         >
       </div>
       <delete-modal
         :visible="showDeleteModal"
-        header="Delete User"
-        message="Are you sure you want to delete this user?"
-        @confirm="deleteUser"
+        header="Delete Educational Cause"
+        message="Are you sure you want to delete this educational cause?"
+        @confirm="deleteEducationalCause"
         @cancel="cancelDelete"
       ></delete-modal>
       <table>
         <tr>
           <th>ID</th>
-          <th>Username</th>
-          <th>Email</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Date Joined</th>
+          <th>Cause Name</th>
+          <th>Target</th>
+          <th>Current Amount</th>
+          <th>Supplies Per Dollar</th>
+          <th>Type Name</th>
+          <th>Image</th>
           <th>Edit</th>
-          <th>Reset Password</th>
           <th>Delete</th>
         </tr>
-        <tr v-for="user in userData" :key="user.userid">
-          <td>{{ user.userid }}</td>
-          <td>{{ user.username }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.firstname }}</td>
-          <td>{{ user.lastname }}</td>
-          <td>{{ getReadableDateTime(user.date_joined) }}</td>
+        <tr v-for="cause in causeData" :key="cause.causeid">
+          <td>{{ cause.causeid }}</td>
+          <td>{{ cause.causename }}</td>
+          <td>SGD {{ cause.targetedamount }}</td>
+          <td>SGD {{ cause.currentamountdonated }}</td>
+          <td>{{ cause.suppliesdonatedperdollar }}</td>
+          <td>{{ cause.typename }}</td>
+          <td>{{ cause.image_path }}</td>
           <td>
-            <router-link :to="`/update-profile/${user.userid}`">
+            <router-link :to="`/update-cause/${cause.causeid}`">
               <button class="blue-btn">Edit</button></router-link
             >
           </td>
           <td>
-            <router-link :to="`/reset-password/${user.userid}`"
-              ><button class="red-btn">Reset Password</button></router-link
-            >
-          </td>
-          <td>
-            <button class="delete-btn" @click="confirmDelete(user.userid)">
+            <button class="delete-btn" @click="confirmDelete(cause.causeid)">
               Delete
             </button>
           </td>
@@ -63,48 +59,40 @@ export default {
   components: { DeleteModal },
   data() {
     return {
-      userData: "",
+      causeData: "",
       showDeleteModal: false,
-      selectedUser: null,
+      selectedCause: null,
     };
   },
   created() {
     axios
-      .get("http://localhost:8080/dashboard/users")
+      .get("http://localhost:8080/dashboard/causes")
       .then((response) => {
-        this.userData = response.data;
+        this.causeData = response.data;
       })
       .catch((error) => {
         console.error("Error fetching profile data", error);
       });
   },
   methods: {
-    getReadableDateTime(dateTime) {
-      const date = new Date(dateTime);
-      const year = date.getFullYear();
-      const month = date.getMonth();
-      const day = date.getDate();
-
-      return `${day}/${month + 1}/${year}`;
-    },
     confirmDelete(id) {
-      this.selectedUser = id;
+      this.selectedCause = id;
       this.showDeleteModal = true;
     },
-    deleteUser() {
-      if (this.selectedUser) {
+    deleteEducationalCause() {
+      if (this.selectedCause) {
         // Send a POST request to delete the user using Axios or your preferred HTTP library
         axios
           .post(
-            `http://localhost:8080/dashboard/users/delete/${this.selectedUser}`
+            `http://localhost:8080/dashboard/causes/delete/${this.selectedCause}`
           )
           .then((response) => {
             // Handle success, e.g., remove the user from the data
-            this.userData = this.userData.filter(
-              (user) => user.userid !== this.selectedUser
+            this.causeData = this.causeData.filter(
+              (cause) => cause.causeid !== this.selectedCause
             );
             // Reset selection and hide the modal
-            this.selectedUser = null;
+            this.selectedCause = null;
             this.showDeleteModal = false;
           })
           .catch((error) => {
@@ -115,7 +103,7 @@ export default {
     },
     cancelDelete() {
       // Reset selection and hide the modal
-      this.selectedUser = null;
+      this.selectedCause = null;
       this.showDeleteModal = false;
     },
   },
@@ -123,7 +111,7 @@ export default {
 </script>
 
 <style scoped>
-.user-table {
+.education-cause-table {
   margin-top: 70px;
   display: flex;
   flex-direction: column;

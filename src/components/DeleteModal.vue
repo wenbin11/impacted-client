@@ -8,6 +8,7 @@
         <button @click="confirm">OK</button>
         <button @click="cancel">Cancel</button>
       </div>
+    </div>
   </div>
 </template>
 
@@ -23,8 +24,8 @@ export default {
       this.$emit("confirm");
     },
     cancel() {
-        this.$$emit("cancel");
-    }
+      this.$emit("cancel");
+    },
   },
 };
 </script>
@@ -78,6 +79,7 @@ p {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  background: white ;
 }
 
 button {

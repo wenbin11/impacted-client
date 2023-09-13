@@ -43,7 +43,7 @@
         <tr>
           <td>Donation Types</td>
           <td>
-            <router-link to="/dashboard/type"
+            <router-link to="/dashboard/types"
               ><button class="blue-btn">Edit</button></router-link
             >
           </td>
@@ -51,7 +51,7 @@
         <tr>
           <td>Donations</td>
           <td>
-            <router-link to="/dashboard/donation"
+            <router-link to="/dashboard/donations"
               ><button class="blue-btn">Edit</button></router-link
             >
           </td>
@@ -59,7 +59,7 @@
         <tr>
           <td>Educational Causes</td>
           <td>
-            <router-link to="/dashboard/cause"
+            <router-link to="/dashboard/causes"
               ><button class="blue-btn">Edit</button></router-link
             >
           </td>
@@ -67,7 +67,7 @@
         <tr>
           <td>Badges</td>
           <td>
-            <router-link to="/dashboard/badge"
+            <router-link to="/dashboard/badges"
               ><button class="blue-btn">Edit</button></router-link
             >
           </td>
@@ -255,7 +255,7 @@ export default {
           type: "value",
           name: "SGD ($)",
           nameLocation: "center",
-          nameGap:  80,
+          nameGap: 80,
           nameTextStyle: {
             fontSize: 16,
           },
