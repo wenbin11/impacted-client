@@ -1,21 +1,27 @@
 import { createStore } from "vuex";
-import { isLogin, currentUser } from './modules/auth';
+import { isLogin, currentUser, isAdmin } from './modules/auth';
 
 export default createStore({
-    modules: {
-        isLogin: isLogin,
-        currentUser: currentUser
-    },
+  modules: {
+    isLogin: isLogin,
+    currentUser: currentUser,
+    isAdmin: isAdmin,
+  },
   mutations: {
-    userIsLoggedIn (state, user) {
+    userIsLoggedIn(state, user) {
       /* eslint-disable */
-      state.isLogin = true;
+      state.isLogin.isLogin = true;
       state.currentUser = user;
     },
-    userIsLoggedOut (state) {
+    userIsLoggedOut(state) {
       /* eslint-disable */
-      state.isLogin = false;
+      state.isLogin.isLogin = false;
+      state.isAdmin.isAdmin = false;
       state.currentUser = null;
-    }
-  }
-})
+    },
+    userIsAdmin(state) {
+      /* eslint-disable */
+      state.isAdmin.isAdmin = true;
+    },
+  },
+});

@@ -1,7 +1,7 @@
 <template>
   <div class="user-profile-page">
     <img src="/images/profile.png" alt="profile" />
-    <div class="username">John Chan</div>
+    <div class="username">{{ firstName }} {{ lastName }} </div>
     <div class="profile-info-container">
       <div class="header">Profile Information</div>
       <hr />
@@ -24,7 +24,12 @@
       </div>
 
       <div class="form-row">
+        <router-link :to="`update-profile/${$store.state.currentUser}`">
         <button class="blue-btn">Edit Profile</button>
+        </router-link>
+        <router-link :to="`reset-password/${$store.state.currentUser}`">
+        <button class="red-btn">Reset Password</button>
+        </router-link>
       </div>
     </div>
 
@@ -34,16 +39,17 @@
       <template v-if="this.pastDonationInfo.length">
         <table>
           <tr>
+            <th>Transaction ID</th>
             <th>Campaign</th>
             <th>Amount</th>
             <th>Date</th>
-            <th>Transaction ID</th>
           </tr>
           <tr v-for="(donation, index) in pastDonationInfo" :key="index">
+            <td>{{ donation.donationid }}</td>
             <td>{{ donation.causename }}</td>
             <td>SGD {{ donation.amountdonated }}</td>
             <td>{{ getReadableDateTime(donation.donationtime) }}</td>
-            <td>{{ donation.donationid }}</td>
+            
           </tr>
         </table>
       </template>
@@ -64,12 +70,14 @@
             <div class="badge-info">
               <ul>
                 <li class="badge-name">{{ badge.badgename }}</li>
-                <li class="badge-date">{{ getReadableDateTime(badge.achievementtime) }}</li>
+                <li class="badge-date">
+                  {{ getReadableDateTime(badge.achievementtime) }}
+                </li>
                 <li class="badge-info">{{ badge.badgedescription }}</li>
               </ul>
             </div>
             <img
-              src="/images/badges/Tech-Champion.png"
+              :src="`/images/badges/${badge.img_path}`"
               alt="badge"
               class="badge-img"
             />
@@ -94,7 +102,7 @@ export default {
       userInfo: "",
       pastDonationInfo: "",
       badgeInfo: "",
-      img_path: '',
+      img_path: "",
     };
   },
   created() {
@@ -150,7 +158,7 @@ img {
 .profile-info-container,
 .past-donations-container,
 .badge-container {
-  width: 50vw;
+  width: 70vw;
   border-radius: 30px;
   margin: 50px 0px;
   padding: 0px 30px;
@@ -189,12 +197,12 @@ table {
 }
 
 th {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 td,
 th {
-  padding: 10px 50px;
+  padding: 10px 30px;
 }
 
 .no-data {
@@ -250,10 +258,27 @@ ul li {
   border-radius: 5px;
   margin-top: 30px;
   cursor: pointer;
-  margin-bottom: 30px;
 }
 
 .blue-btn:hover {
   background-color: #0056b3;
+}
+
+.red-btn {
+  background-color: #cc0000;
+  font-weight: bold;
+  font-size: 16px;
+  width: 100%;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.red-btn:hover {
+  background-color: #b20000;
 }
 </style>

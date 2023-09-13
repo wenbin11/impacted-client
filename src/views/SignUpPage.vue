@@ -39,7 +39,8 @@
       <!-- Registration Success Modal -->
       <message-modal
         :visible="registrationSuccess"
-        message="Registration Successful!"
+        header="Registration Successful!"
+        message="You have successfully registered an account."
         @confirm="redirectToLogin"
       ></message-modal>
       <!-- Sign Up Button -->

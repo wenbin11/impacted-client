@@ -68,6 +68,10 @@ export default {
           localStorage.setItem("token", token);
           localStorage.setItem("user", JSON.stringify(userId));
           this.$store.commit("userIsLoggedIn", userId);
+
+          if (userId === 1) {
+            this.$store.commit("userIsAdmin");
+          }
     
           // Redirect to a home page
           this.$router.push("/");

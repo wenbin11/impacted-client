@@ -13,26 +13,29 @@
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/about">About Us</router-link></li>
         <li><router-link to="/donation">Donations</router-link></li>
+        <li class="dashboard" v-if="!$store.state.isAdmin.isAdmin">
+          <router-link to="/dashboard">Dashboard</router-link>
+        </li>
       </ul>
     </div>
     <!-- Right Side of NavBar -->
     <div class="right">
       <!-- Navlinks depending on User Types -->
       <ul class="nav-links">
-        <li class="sign-up" v-if="!$store.state.isLogin">
+        <li class="sign-up" v-if="!$store.state.isLogin.isLogin">
           <router-link to="/register">Sign Up</router-link>
         </li>
-        <li v-if="!$store.state.isLogin">
+        <li v-if="!$store.state.isLogin.isLogin">
           <button class="blue-btn">
             <router-link to="/login">Login</router-link>
           </button>
         </li>
-        <li v-if="$store.state.isLogin">
+        <li v-if="$store.state.isLogin.isLogin" class="profile">
           <router-link to="/profile">My Profile</router-link>
         </li>
-        <li v-if="$store.state.isLogin">
+        <li v-if="$store.state.isLogin.isLogin">
           <button class="blue-btn" @click="logout">
-            <router-link to="/logout">Logout</router-link>
+            <a>Logout</a>
           </button>
         </li>
       </ul>
@@ -52,12 +55,14 @@ export default {
   methods: {
     // Check if user is logged in
     logout() {
+      this.logoutUser();
       this.$store.commit("userIsLoggedOut");
       this.$router.push("/");
     },
     logoutUser() {
       // Clear user authentication data from localStorage or sessionStorage
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
     },
   },
 };
@@ -127,17 +132,20 @@ ul li a {
   border: none;
   cursor: pointer;
   font-weight: bold;
-  background-color: #f6f6f6;
+  background-color: #00a2e6;
+  color: white;
+  font-size: 1.25rem;
 }
 
 .blue-btn a {
   color: white;
   background-color: #00a2e6;
   font-size: 1.25rem;
-  border-radius: 10px;
   padding: 10px 40px;
+  border-radius: 10px;
 }
 
+.blue-btn:hover,
 .blue-btn a:hover {
   background-color: #0056b3;
 }

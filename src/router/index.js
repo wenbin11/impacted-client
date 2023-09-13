@@ -8,6 +8,10 @@ import PaymentPage from "@/views/PaymentPage.vue";
 import SuccessPage from "@/views/SuccessPage.vue";
 import ErrorPage from "@/views/ErrorPage.vue";
 import UserProfilePage from "@/views/UserProfilePage.vue";
+import UpdateUserProfilePage from "@/views/UpdateUserProfilePage.vue";
+import ChangePasswordPage from "@/views/ChangePasswordPage.vue";
+import DashboardPage from "@/views/admin/DashboardPage.vue";
+import UserDashboardPage from "@/views/admin/UserDashboardPage.vue";
 
 // My Routes
 const routes = [
@@ -60,6 +64,26 @@ const routes = [
     path: "/profile",
     name: "Profile",
     component: UserProfilePage,
+  },
+  {
+    path: "/update-profile/:userId",
+    name: "UpdateProfile",
+    component: UpdateUserProfilePage,
+  },
+  {
+    path: "/reset-password/:userId",
+    name: "ResetPassword",
+    component: ChangePasswordPage,
+  },
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    component: DashboardPage,
+  },
+  {
+    path: "/dashboard/user",
+    name: "UserDashboard",
+    component: UserDashboardPage,
   },
 ];
 

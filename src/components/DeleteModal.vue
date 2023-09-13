@@ -1,11 +1,13 @@
 <template>
   <div v-if="visible" class="modal">
     <div class="modal-content">
-      <img src="/images/success.png" alt="sucess" />
+      <img src="/images/error.png" alt="error" />
       <h1>{{ header }}</h1>
       <p>{{ message }}</p>
-      <button @click="confirm">OK</button>
-    </div>
+      <div class="button-container">
+        <button @click="confirm">OK</button>
+        <button @click="cancel">Cancel</button>
+      </div>
   </div>
 </template>
 
@@ -20,6 +22,9 @@ export default {
     confirm() {
       this.$emit("confirm");
     },
+    cancel() {
+        this.$$emit("cancel");
+    }
   },
 };
 </script>
@@ -69,6 +74,12 @@ p {
   background-color: white;
 }
 
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
 button {
   background-color: #00a2e6;
   color: white;
@@ -76,10 +87,9 @@ button {
   padding: 15px 40px;
   border-radius: 10px;
   cursor: pointer;
-  margin-top: 30px;
   margin-bottom: 10px;
   font-weight: bold;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {

@@ -9,3 +9,9 @@ export const currentUser = {
     currentUser: null,
   },
 };
+
+export const isAdmin = {
+  state: {
+    isAdmin: false,
+  },
+};
