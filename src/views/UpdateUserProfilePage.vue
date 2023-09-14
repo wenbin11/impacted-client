@@ -55,7 +55,7 @@ export default {
     const userId = this.$route.params.userId;
 
     axios
-      .get(`http://localhost:8080/get-profile/${userId}`) // Replace with your API endpoint
+      .get(`http://localhost:8080/get-profile/${userId}`)
       .then((response) => {
         // Populate the input fields with retrieved data
         this.editedFirstName = response.data.firstname;

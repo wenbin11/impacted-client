@@ -219,7 +219,7 @@ th {
 }
 
 .badge-info {
-  flex: 5;
+  flex: 7;
 }
 
 ul li {
@@ -257,6 +257,7 @@ ul li {
   padding: 10px;
   border-radius: 5px;
   margin-top: 30px;
+  margin-bottom: 20px;
   cursor: pointer;
 }
 
@@ -273,7 +274,6 @@ ul li {
   border: none;
   padding: 10px;
   border-radius: 5px;
-  margin-top: 20px;
   cursor: pointer;
   margin-bottom: 30px;
 }

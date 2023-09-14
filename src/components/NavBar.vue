@@ -13,7 +13,7 @@
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/about">About Us</router-link></li>
         <li><router-link to="/donation">Donations</router-link></li>
-        <li class="dashboard" v-if="!$store.state.isAdmin.isAdmin">
+        <li class="dashboard" v-if="$store.state.isAdmin.isAdmin">
           <router-link to="/dashboard">Dashboard</router-link>
         </li>
       </ul>
