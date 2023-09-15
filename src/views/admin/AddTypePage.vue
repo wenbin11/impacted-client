@@ -1,6 +1,6 @@
 <template>
   <div class="add-badge-page">
-    <div class="header">Add a Badge</div>
+    <div class="header">Add a Donation Type</div>
     <form @submit.prevent="createBadge" class="create-form">
       <div class="form-group">
         <div v-if="createError" class="error-message">
@@ -61,7 +61,7 @@ export default {
     },
     redirectToTypeDashboard() {
       this.createSuccess = false;
-      this.$router.push("/dashboard/type");
+      this.$router.push("/dashboard/types");
     },
   },
 };

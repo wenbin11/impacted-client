@@ -79,7 +79,7 @@ export default {
     },
     redirectToTypeDashboard() {
       this.updateSuccess = false;
-      this.$router.push("/dashboard/type");
+      this.$router.push("/dashboard/types");
     },
   },
 };

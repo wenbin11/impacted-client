@@ -91,7 +91,7 @@ export default {
     },
     redirectToProfile() {
       this.updateSuccess = false;
-      this.$router.push("/home");
+      this.$router.push("/profile");
     },
   },
 };
