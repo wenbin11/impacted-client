@@ -10,6 +10,9 @@
 </template>
 
 <script>
+/**
+ * Reusable component to inform users that the user action was successful
+ */
 export default {
   props: {
     visible: Boolean,
@@ -26,7 +29,6 @@ export default {
 
 <style scoped>
 .modal {
-  /* Styles to create a modal overlay */
   position: fixed;
   top: 0;
   left: 0;
@@ -79,7 +81,7 @@ button {
   margin-top: 30px;
   margin-bottom: 10px;
   font-weight: bold;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {

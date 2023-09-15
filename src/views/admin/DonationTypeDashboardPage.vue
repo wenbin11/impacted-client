@@ -71,13 +71,12 @@ export default {
     },
     deleteType() {
       if (this.selectedType) {
-        // Send a POST request to delete the user using Axios or your preferred HTTP library
+        // Send a POST request to delete the user using Axios
         axios
           .post(
             `http://localhost:8080/dashboard/types/delete/${this.selectedType}`
           )
           .then((response) => {
-            // Handle success, e.g., remove the user from the data
             this.typeData = this.typeData.filter(
               (type) => type.typeid !== this.selectedType
             );
@@ -87,7 +86,6 @@ export default {
           })
           .catch((error) => {
             console.error("Error deleting user", error);
-            // Handle error as needed
           });
       }
     },

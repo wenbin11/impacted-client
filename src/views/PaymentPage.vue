@@ -122,7 +122,7 @@ export default {
       donationAmount: 0,
       supplyCount: 0,
       img_path: "",
-      stripe: null, // Stripe instance
+      stripe: null,
     };
   },
   computed: {
@@ -143,11 +143,9 @@ export default {
       return (Math.round(amount * 10) / 10).toFixed(2);
     },
   },
-  // use `causeId` to fetch data or perform other actions based on the selected cause ID.
   created() {
     const causeId = this.$route.params.causeid;
     console.log(this.$store.state.currentUser);
-    // Fetch donation options data from the backend API
     axios
       .get(`http://localhost:8080/cause/${causeId}`)
       .then((response) => {
@@ -175,7 +173,7 @@ export default {
       try {
         const { sessionId } = await this.createStripeCheckoutSession();
         if (!sessionId) {
-          // Handle error
+          console.error("Error with Session Id:", error);
           return;
         }
 
@@ -185,7 +183,6 @@ export default {
         });
 
         if (error) {
-          // Handle any errors that occur during redirect
           console.error("Error redirecting to Stripe Checkout:", error);
         }
       } catch (error) {
@@ -208,11 +205,10 @@ export default {
         return response.data;
       } catch (error) {
         console.error("Error creating Stripe Checkout session:", error);
-        // Handle the error as needed
         return { error: "Failed to create Stripe Checkout session." };
       }
     },
-    // Helper function to format target number text
+    // function to format target number text
     getSupplyType(typeName) {
       if (typeName === "Infrastructure Development") {
         return "centers";
@@ -224,7 +220,7 @@ export default {
         return "programs";
       }
     },
-    // Helper function to format supporter number text
+    // function to format supporter number text
     getSupporterTextContent(supporterNumber) {
       supporterNumber = parseInt(supporterNumber);
       if (supporterNumber === 1) {
@@ -232,7 +228,7 @@ export default {
       }
       return `${supporterNumber} supporters`;
     },
-    // Helper function to calculate progress width
+    // function to calculate progress width
     getProgressWidth(causeData) {
       const progress = parseInt(
         (causeData.currentsupplies / causeData.targetsupplies) * 100
@@ -251,7 +247,6 @@ export default {
       );
     },
     onCustomAmountInput(event) {
-      // Use a regular expression to allow only numeric or float values
       const regex = /^[0-9]*(\.[0-9]*)?$/;
       const inputValue = event.target.value;
 
@@ -294,7 +289,6 @@ export default {
   margin-top: 50px;
 }
 
-/* CSS Styles for the Left Container */
 .left-container {
   flex: 0 0 calc(50% - 20px);
   height: 550px;

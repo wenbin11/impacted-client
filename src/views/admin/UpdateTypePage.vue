@@ -43,10 +43,10 @@ export default {
     const typeId = this.$route.params.typeId;
 
     axios
-      .get(`http://localhost:8080/dashboard/get-type/${typeId}`) // Replace with your API endpoint
+      .get(`http://localhost:8080/dashboard/get-type/${typeId}`)
       .then((response) => {
         console.log(response.data);
-        // Populate the input fields with retrieved data
+        // Update data with retrieved data
         this.editedTypeName = response.data.typename;
       })
       .catch((error) => {
@@ -55,14 +55,13 @@ export default {
   },
   methods: {
     updateType() {
-      // Fetch the user's current profile data from the server
       const typeId = this.$route.params.typeId;
       // Create an object to send as the request payload
       const typeData = {
         typeName: this.editedTypeName,
       };
 
-      // Make a POST request to your backend update endpoint
+      // Make a POST request to backend update endpoint
       axios
         .post(
           `http://localhost:8080/dashboard/update-type/${typeId}`,

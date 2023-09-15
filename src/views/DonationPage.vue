@@ -26,19 +26,13 @@ import DonationContainer from "../components/DonationContainer.vue";
 import axios from "axios";
 
 /**
- * DonationPage Component
- *
  * The DonationPage component represents a page where users can choose where to make donations.
- *
- * It displays a header and a grid of donation containers, each representing a donation option.
- * The donation options are fetched from a backend API using Axios during component creation.
- *
  */
 export default {
   components: { DonationContainer },
   data() {
     return {
-      donationData: [], // Stores donation options data
+      donationData: [],
     };
   },
   created() {
@@ -56,7 +50,6 @@ export default {
 </script>
 
 <style scoped>
-/* Scoped CSS Styles for the DonationPage Component */
 .content-container {
   width: 85vw;
   margin: 70px auto;

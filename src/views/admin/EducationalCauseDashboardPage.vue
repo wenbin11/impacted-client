@@ -81,13 +81,12 @@ export default {
     },
     deleteEducationalCause() {
       if (this.selectedCause) {
-        // Send a POST request to delete the user using Axios or your preferred HTTP library
+        // Send a POST request to delete the user using axios
         axios
           .post(
             `http://localhost:8080/dashboard/causes/delete/${this.selectedCause}`
           )
           .then((response) => {
-            // Handle success, e.g., remove the user from the data
             this.causeData = this.causeData.filter(
               (cause) => cause.causeid !== this.selectedCause
             );
@@ -97,7 +96,6 @@ export default {
           })
           .catch((error) => {
             console.error("Error deleting user", error);
-            // Handle error as needed
           });
       }
     },

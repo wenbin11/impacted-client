@@ -53,12 +53,7 @@
 import BlueButton from "../components/BlueButton.vue";
 
 /**
- * LandingPage Component
- *
- * The LandingPage component represents the landing page of the ImpactEd website.
- *
- * It features a banner with an overlay text and a call to action button, as well as a section
- * describing ImpactEd's mission with another call to action button.
+ * The Home Page component represents the landing page of the ImpactEd website.
  */
 export default {
   components: { BlueButton },
@@ -70,7 +65,6 @@ export default {
   background-color: #f0f0f0;
 }
 
-/* Banner Section Styles */
 .banner-section {
   position: relative;
   width: 100%;
@@ -85,7 +79,6 @@ export default {
   object-fit: cover;
 }
 
-/* Linear gradient overlay */
 .banner-section::before {
   content: "";
   position: absolute;
@@ -132,7 +125,6 @@ export default {
   margin-bottom: 20px;
 }
 
-/* Mission Section Styles */
 .mission-section {
   width: 90vw;
   margin: 20px auto;

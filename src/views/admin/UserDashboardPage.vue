@@ -93,13 +93,12 @@ export default {
     },
     deleteUser() {
       if (this.selectedUser) {
-        // Send a POST request to delete the user using Axios or your preferred HTTP library
+        // Send a POST request to delete the user using axios
         axios
           .post(
             `http://localhost:8080/dashboard/users/delete/${this.selectedUser}`
           )
           .then((response) => {
-            // Handle success, e.g., remove the user from the data
             this.userData = this.userData.filter(
               (user) => user.userid !== this.selectedUser
             );
@@ -109,7 +108,6 @@ export default {
           })
           .catch((error) => {
             console.error("Error deleting user", error);
-            // Handle error as needed
           });
       }
     },

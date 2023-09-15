@@ -42,6 +42,7 @@
 
 <script>
 import axios from "axios";
+/** Login Page Component */
 export default {
   data() {
     return {
@@ -59,11 +60,11 @@ export default {
         password: this.password,
       };
 
-      // Make a POST request to your backend login endpoint
+      // Make a POST request to backend login endpoint
       axios
         .post("http://localhost:8080/login", userData)
         .then((response) => {
-          const [token, { userId }] = response.data; // Access response.data
+          const [token, { userId }] = response.data;
           // Store the token and user information in local storage and vuex store
           localStorage.setItem("token", token);
           localStorage.setItem("user", JSON.stringify(userId));
@@ -72,7 +73,6 @@ export default {
           if (userId === 1) {
             this.$store.commit("userIsAdmin");
           }
-    
           // Redirect to a home page
           this.$router.push("/");
         })

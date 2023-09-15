@@ -57,7 +57,7 @@ export default {
     axios
       .get(`http://localhost:8080/get-profile/${userId}`)
       .then((response) => {
-        // Populate the input fields with retrieved data
+        // Update data with retrieved data
         this.editedFirstName = response.data.firstname;
         this.editedLastName = response.data.lastname;
         this.editedEmail = response.data.email;
@@ -68,7 +68,6 @@ export default {
   },
   methods: {
     updateProfile() {
-      // Fetch the user's current profile data from the server
       const userId = this.$store.state.currentUser;
       // Create an object to send as the request payload
       const userData = {
@@ -77,7 +76,7 @@ export default {
         lname: this.editedLastName,
       };
 
-      // Make a POST request to your backend update endpoint
+      // Make a POST request to backend update endpoint
       axios
         .post(`http://localhost:8080/update-profile/${userId}`, userData)
         .then((response) => {

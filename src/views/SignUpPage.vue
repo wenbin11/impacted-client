@@ -57,7 +57,9 @@
 <script>
 import axios from "axios";
 import MessageModal from "../components/MessageModal.vue";
-
+/**
+ * Sign up page component
+ */
 export default {
   components: { MessageModal },
   data() {
@@ -82,7 +84,7 @@ export default {
         lname: this.lastName,
       };
 
-      // Make a POST request to your backend registration endpoint
+      // Make a POST request to backend registration endpoint
       axios
         .post("http://localhost:8080/register", userData)
         .then((response) => {

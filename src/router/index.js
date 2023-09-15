@@ -25,7 +25,7 @@ import DonationDashboardPage from "@/views/admin/DonationDashboardPage.vue";
 import UpdateDonationPage from "@/views/admin/UpdateDonationPage.vue";
 import AddDonationPage from "@/views/admin/AddDonationPage.vue";
 
-// My Routes
+// Routes
 const routes = [
   {
     path: "/",

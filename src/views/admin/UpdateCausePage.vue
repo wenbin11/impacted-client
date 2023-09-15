@@ -98,10 +98,10 @@ export default {
     const causeId = this.$route.params.causeId;
 
     axios
-      .get(`http://localhost:8080/dashboard/get-cause/${causeId}`) // Replace with your API endpoint
+      .get(`http://localhost:8080/dashboard/get-cause/${causeId}`)
       .then((response) => {
         console.log(response.data);
-        // Populate the input fields with retrieved data
+        // Update data with retrieved data
         this.newCauseName = response.data.causename;
         this.newTargetAmount = response.data.targetedamount;
         this.newCurrentAmount = response.data.currentamountdonated;
@@ -115,7 +115,6 @@ export default {
   },
   methods: {
     updateCause() {
-      // Fetch the user's current profile data from the server
       const causeId = this.$route.params.causeId;
       // Create an object to send as the request payload
       const badgeData = {
@@ -127,7 +126,7 @@ export default {
         image_path: this.image_path,
       };
 
-      // Make a POST request to your backend update endpoint
+      // Make a POST request to backend update endpoint
       axios
         .post(
           `http://localhost:8080/dashboard/update-cause/${causeId}`,

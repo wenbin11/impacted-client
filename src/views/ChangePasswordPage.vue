@@ -54,7 +54,7 @@ export default {
         confirmPassword: this.confirmPassword,
       };
 
-      // Make a POST request to your backend update endpoint
+      // Make a POST request to backend update endpoint
       axios
         .post(`http://localhost:8080/reset-password/${userId}`, userData)
         .then((response) => {

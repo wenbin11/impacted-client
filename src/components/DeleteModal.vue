@@ -13,6 +13,9 @@
 </template>
 
 <script>
+/**
+ * Reusable component to prompt users once again they are about to delete a data
+ */
 export default {
   props: {
     visible: Boolean,
@@ -32,7 +35,6 @@ export default {
 
 <style scoped>
 .modal {
-  /* Styles to create a modal overlay */
   position: fixed;
   top: 0;
   left: 0;
@@ -79,7 +81,7 @@ p {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-  background: white ;
+  background: white;
 }
 
 button {

@@ -52,10 +52,10 @@ export default {
     const donationId = this.$route.params.donationId;
 
     axios
-      .get(`http://localhost:8080/dashboard/get-donation/${donationId}`) // Replace with your API endpoint
+      .get(`http://localhost:8080/dashboard/get-donation/${donationId}`)
       .then((response) => {
         console.log(response.data);
-        // Populate the input fields with retrieved data
+        // Update data with retrieved data
         this.editedAmountDonated = response.data[0].amountdonated;
       })
       .catch((error) => {
@@ -64,14 +64,13 @@ export default {
   },
   methods: {
     updateDonation() {
-      // Fetch the user's current profile data from the server
       const donationId = this.$route.params.donationId;
       // Create an object to send as the request payload
       const typeData = {
         amountDonated: this.editedAmountDonated,
       };
 
-      // Make a POST request to your backend update endpoint
+      // Make a POST request to backend update endpoint
       axios
         .post(
           `http://localhost:8080/dashboard/update-donation/${donationId}`,

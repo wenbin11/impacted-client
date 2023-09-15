@@ -52,6 +52,12 @@
  * It includes a logo, navigation links, and user-related options such as sign-up and login.
  */
 export default {
+  created() {
+    const userId = localStorage.getItem("user");
+    if (userId) {
+      this.$store.commit("userIsLoggedIn", userId);
+    }
+  },
   methods: {
     // Check if user is logged in
     logout() {

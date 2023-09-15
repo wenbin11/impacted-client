@@ -75,13 +75,12 @@ export default {
     },
     deleteBadge() {
       if (this.selectedBadge) {
-        // Send a POST request to delete the user using Axios or your preferred HTTP library
+        // Send a POST request to delete the user using axios
         axios
           .post(
             `http://localhost:8080/dashboard/badges/delete/${this.selectedBadge}`
           )
           .then((response) => {
-            // Handle success, e.g., remove the user from the data
             this.badgeData = this.badgeData.filter(
               (badge) => badge.badgeid !== this.selectedBadge
             );
@@ -91,7 +90,6 @@ export default {
           })
           .catch((error) => {
             console.error("Error deleting user", error);
-            // Handle error as needed
           });
       }
     },

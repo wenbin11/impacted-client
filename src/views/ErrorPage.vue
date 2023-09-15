@@ -11,6 +11,7 @@
 </template>
 
 <script>
+/** Component to display payment error message page  */
 export default {
   data() {
     return {

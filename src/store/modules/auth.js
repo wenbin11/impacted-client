@@ -1,3 +1,4 @@
+// Vuex store states
 export const isLogin = {
   state: {
     isLogin: false,

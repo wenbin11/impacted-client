@@ -1,7 +1,11 @@
 <template>
+  <!-- Main Container -->
   <div class="add-type-page">
+    <!-- Header -->
     <div class="header">Add Donation Type</div>
+    <!-- Form -->
     <form @submit.prevent="createBadge" class="create-form">
+      <!-- Error Messages -->
       <div class="form-group">
         <div v-if="createError" class="error-message">
           Create Unsuccessful!
@@ -11,27 +15,32 @@
             </li>
           </ul>
         </div>
+        <!-- Badge Name -->
         <label for="badge-name">Badge Name:</label>
         <input type="text" id="badge-name" v-model="badgeName" />
       </div>
+      <!-- Badge Description -->
       <div class="form-row">
         <div class="form-group">
           <label for="description">Description:</label>
           <input type="text" id="description" v-model="badgeDescription" required />
         </div>
       </div>
+      <!-- Badge image_path -->
       <div class="form-row">
         <div class="form-group">
           <label for="File-Name">File Name:</label>
           <input type="text" id="File-Name" v-model="imgPath" required />
         </div>
       </div>
+      <!-- Message Modal -->
       <message-modal
         :visible="createSuccess"
         header="Badge Added"
         message="Your badge has been successfully added."
         @confirm="redirectToBadgeDashboard"
       ></message-modal>
+      <!-- Submit button -->
       <button type="submit" class="add-btn">Create</button>
     </form>
   </div>
@@ -41,6 +50,9 @@
 import axios from "axios";
 import MessageModal from "../../components/MessageModal.vue";
 
+/**
+ * Component to render a page to create a new badge
+ */
 export default {
   components: { MessageModal },
   data() {
@@ -62,7 +74,7 @@ export default {
         imgPath: this.imgPath,
       };
 
-      // Make a POST request to your backend update endpoint
+      // Make a POST request to backend endpoint
       axios
         .post(`http://localhost:8080/dashboard/add-badge`, badgeData)
         .then((response) => {

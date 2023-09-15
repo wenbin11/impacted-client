@@ -46,7 +46,7 @@ export default {
         typeName: this.typeName,
       };
 
-      // Make a POST request to your backend update endpoint
+      // Make a POST request to backend endpoint
       axios
         .post(`http://localhost:8080/dashboard/add-type`, typeData)
         .then((response) => {

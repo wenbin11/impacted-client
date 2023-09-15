@@ -63,7 +63,7 @@
 /**
  * DonationContainer.vue
  *
- * This Vue.js component represents a single donation box container that displays information about a specific cause
+ * Component representing a single donation box container that displays information about a specific cause
  * and allows users to make donations. It provides details such as the cause name, an image, target supplies, supporters,
  * donation progress, and a donate button.
  */
@@ -81,7 +81,7 @@ export default {
     this.img_path = "/images/donations/" + this.boxData.image_path;
   },
   methods: {
-    // Helper function to format target number text
+    // function to format target number text
     getTargetNumberTextContent(targetNumber, typeName) {
       targetNumber = parseInt(targetNumber);
       if (typeName === "Infrastructure Development") {
@@ -94,7 +94,7 @@ export default {
         return `${targetNumber} programs`;
       }
     },
-    // Helper function to format supporter number text
+    // function to format supporter number text
     getSupporterTextContent(supporterNumber) {
       supporterNumber = parseInt(supporterNumber);
       if (supporterNumber === 1) {
@@ -102,7 +102,7 @@ export default {
       }
       return `${supporterNumber} supporters`;
     },
-    // Helper function to calculate progress width
+    // function to calculate progress width
     getProgressWidth(boxData) {
       const progress = parseInt(
         (boxData.currentsupplies / boxData.targetsupplies) * 100
@@ -114,7 +114,6 @@ export default {
 </script>
 
 <style scoped>
-/* Scoped CSS Styles for the DonationContainer Component */
 .single-donation-box-container {
   width: 325px;
   height: 400px;

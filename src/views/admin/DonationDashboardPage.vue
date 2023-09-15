@@ -77,13 +77,12 @@ export default {
     },
     deleteDonation() {
       if (this.selectedDonation) {
-        // Send a POST request to delete the user using Axios or your preferred HTTP library
+        // Send a POST request to delete the user using axios
         axios
           .post(
             `http://localhost:8080/dashboard/donations/delete/${this.selectedDonation}`
           )
           .then((response) => {
-            // Handle success, e.g., remove the user from the data
             this.donationData = this.donationData.filter(
               (donation) => donation.donationid !== this.selectedDonation
             );
@@ -93,7 +92,6 @@ export default {
           })
           .catch((error) => {
             console.error("Error deleting user", error);
-            // Handle error as needed
           });
       }
     },

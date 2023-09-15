@@ -176,7 +176,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      aboutData: [], // Initialize aboutData as an empty array to store fetched data.
+      aboutData: [],
     };
   },
   created() {
@@ -185,16 +185,14 @@ export default {
       .get("http://localhost:8080/about")
       .then((response) => {
         this.aboutData = response.data;
-        // Call the renderChart method to render a chart with the fetched data.
         this.renderChart();
       })
       .catch((err) => {
-        // Handle any errors that may occur during the API request.
         console.log(err);
       });
   },
   methods: {
-    // A helper function to format text based on the number of days.
+    // Function to format text based on the number of days.
     getTextContent(numberOfDays) {
       if (numberOfDays === 1) {
         return "in the last day";
@@ -202,7 +200,7 @@ export default {
         return `in the last ${numberOfDays} days`;
       }
     },
-    // A method to render a chart using ECharts library.
+    // Function to render a chart using ECharts library.
     renderChart() {
       // Initialize an ECharts chart using a DOM element with the ref "chartRef."
       const chart = echarts.init(this.$refs.chartRef);
@@ -260,7 +258,6 @@ export default {
 </script>
 
 <style scoped>
-/* Scoped CSS Styles for the AboutPage Component */
 .container {
   width: 90vw;
   margin: 70px auto;

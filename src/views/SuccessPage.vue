@@ -31,6 +31,9 @@
 import axios from "axios";
 import BlueButton from "../components/BlueButton.vue";
 
+/**
+ * Component to render a payment success page
+ */
 export default {
   components: { BlueButton },
   data() {
@@ -44,6 +47,7 @@ export default {
     const causeId = this.$route.query.causeId;
     const userId = this.$route.query.userId;
     const donationAmount = this.$route.query.donationAmount;
+
     // Send a GET request to fetch data from the backend.
     axios
       .get(
@@ -60,7 +64,6 @@ export default {
         this.time = formattedDate;
       })
       .catch((err) => {
-        // Handle any errors that may occur during the API request.
         console.log(err);
       });
   },

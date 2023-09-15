@@ -78,7 +78,7 @@ export default {
         imgPath: this.imgPath,
       };
 
-      // Make a POST request to your backend update endpoint
+      // Make a POST request to backend endpoint
       axios
         .post(`http://localhost:8080/dashboard/add-cause`, causeData)
         .then((response) => {

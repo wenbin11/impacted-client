@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import { isLogin, currentUser, isAdmin } from './modules/auth';
 
+// Vuex store 
 export default createStore({
   modules: {
     isLogin: isLogin,

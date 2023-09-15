@@ -62,10 +62,10 @@ export default {
     const badgeId = this.$route.params.badgeId;
 
     axios
-      .get(`http://localhost:8080/dashboard/get-badge/${badgeId}`) // Replace with your API endpoint
+      .get(`http://localhost:8080/dashboard/get-badge/${badgeId}`)
       .then((response) => {
         console.log(response.data);
-        // Populate the input fields with retrieved data
+        // Update data with retrieved data
         this.newBadgeName = response.data.badgename;
         this.newBadgeDescription = response.data.badgedescription;
         this.newImgPath = response.data.img_path;
@@ -76,7 +76,6 @@ export default {
   },
   methods: {
     updateBadge() {
-      // Fetch the user's current profile data from the server
       const badgeId = this.$route.params.badgeId;
       // Create an object to send as the request payload
       const badgeData = {
@@ -85,7 +84,7 @@ export default {
         newImgPath: this.newImgPath,
       };
 
-      // Make a POST request to your backend update endpoint
+      // Make a POST request to backend update endpoint
       axios
         .post(
           `http://localhost:8080/dashboard/update-badge/${badgeId}`,
